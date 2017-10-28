@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <main role="main">
+    <div class="jumbotron">
+      <h1 class="display-3">Get StackOverFlow Posts</h1>
+      <form action="{% url 'posts' %}" method="GET">
+      	<div class="form-group">
+      		<input class="form-control" type="number" placeholder="Enter User ID"/ name='uid'>
+      	</div>
+      <p><button class="btn btn-lg btn-success" href="#" role="button">Get All posts</button>
+        <a class="btn btn-lg btn-success" href="{% url "social:begin" "stackoverflow" %}?next=/get-my-posts/" role="button">Get My posts</a></p>
+      </form>
+    </div>
+  </main>
+{% endblock %}

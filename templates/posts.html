@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load post_tags %}
+
+{% block content %}
+  <div class="text-center">
+    <span>UserId - {{request.GET.uid}}</span>
+    <a href="/"><button type="button" class="btn btn-primary">Go Back</button></a>
+  </div>
+  <main role="main">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Link</th>
+          <th>Type</th>
+          <th>Created On</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td><a href="{{item.link}}">{{item.link}}</a></td>
+            <td>{{item.post_type}}</td>
+            <td>{{item.creation_date|parsetimestamp|timesince}} ago</td>
+            <td>{{item.score}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+  <div class="pagination">
+    <span class="step-links">
+        {% if previous %}
+            <a href="?page={{ previous }}&uid={{request.GET.uid}}">previous</a>
+        {% endif %}
+
+        {% if next %}
+            <a href="?page={{ next }}&uid={{request.GET.uid}}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
